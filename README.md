@@ -1,19 +1,26 @@
 # Wii-RL
 AI-Tango's Official Wii Reinforcement Learning Repository
+
 (https://www.youtube.com/@aitango)
 
 Please watch the video which explains how to use this repository in detail! - (COMING SOON)
 
 This repository contains code to allow Reinforcement Learning agents to to play Wii games. In this repo, we provide an example of:
+
 - A Mario Kart Wii environment, using Luigi Circuit against Hard CPUs on 150cc.
+  
 - We provide a Reinforcement Learning algorithm (Beyond The Rainbow), which is setup and ready to interact with the environment.
+  
 - This algorithm is able to get first place in approximately one day of training using an RTX4090. This algorithm can still be run on lighter hardware, but may take slightly longer.
 
 Beyond The Rainbow (BTR) algorithm, accepted at ICML 2025 (Poster) - https://arxiv.org/abs/2411.03820
 
 Installation Instructions:
+
 -Download Python 3.12 (It needs to be this version as the Dolphin Scripting Fork relies on this vesrion) - https://www.python.org/downloads/release/python-3120/
+
 -Download Felk's Fork of Dolphin, which allows programmatic input to the emulator via python - https://github.com/Felk/dolphin/releases
+
 -Download Visual Studio's C++ build tools package.
 
 Once you've installed these, you will need to download the game, Mario Kart Wii. We cannot legally distribute this ROM, so you will need to acquire a Mario Kart Wii ROM.
