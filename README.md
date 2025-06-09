@@ -1,5 +1,6 @@
 # Wii-RL
 AI-Tango's Official Wii Reinforcement Learning Repository
+(https://www.youtube.com/@aitango)
 
 Please watch the video which explains how to use this repository in detail! - (COMING SOON)
 
