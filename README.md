@@ -109,7 +109,7 @@ For 4 instances, you will need to copy your `dolphin0` folder, such that you hav
 
 To test your installiation, I recommend first running `python DolphinEnv.py`. This will allow you to control the race yourself and test things are working.
 
-Then, please test the AI works by running `python BTR.py --testing`. 
+Then, please test the AI works by running `python BTR.py --testing 1`. 
 
 Once you've confirmed things work, run `python BTR.py`, which will run the Beyond The Rainbow algorithm on the Mario Kart environment.
 
