@@ -121,6 +121,8 @@ Once you've confirmed things work, run `python BTR.py`, which will run the Beyon
 2. From 200k timesteps to 2M timesteps, the agent will slowly use fewer random actions, but during this period it may be hard to see any improvement.
 3. At 2M-5M timesteps, you should be able to clearly see improvement. If not, something is messed up.
 4. When testing this on an i9-13900k and RTX4090, it takes around 12 Hours to get an agent which can consistently finish the race.
+5. When you start a training run, a new folder will be created (something like BTR_MarioKart2000M). This will contain a .png file with a graph of reward over time.
+6. By default, the agent will run for 2 Billion frames (500 Million Timesteps). This is a LONG time, so don't be waiting around for it to finish.
 
 Best of Luck!
 
