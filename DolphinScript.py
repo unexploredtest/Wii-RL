@@ -6,9 +6,14 @@ from dolphin import event, gui, savestate, memory, controller
 
 import sys
 import os
+import inspect
 
 # add libraries from your python install (needs to match dolphin version (currently 3.12))
-sys.path.append(r"C:\Users\Tyler\AppData\Local\Programs\Python\Python312\Lib\site-packages")
+try:
+    username = os.getlogin()
+    sys.path.append(f"C:\\Users\\{username}\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages")
+except Exception as e:
+    print(f"Error: {e}")
 
 # Now we can import other libraries safely
 try:
@@ -32,6 +37,9 @@ def increment_alive(path='alive.txt'):
     alive_num = int(path.read_text().strip()) if path.exists() else 0
     path.write_text(str(alive_num + 1))
     return alive_num
+
+script_directory = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+save_states_path = script_directory + f"\\savestates\\"
 
 instance_info_folder = Path('instance_info')
 
@@ -432,7 +440,7 @@ class DolphinInstance:
         x = random.randint(2, 8)
 
         # reset environment back to savestate
-        savestate.load_from_slot(x)
+        savestate.load_from_file(save_states_path + f"RMCP01.s0{x}")
 
         self.memory_tracker = Memory()
 
