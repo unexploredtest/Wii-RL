@@ -93,8 +93,9 @@ To install the relevant libraries, please do `pip install requirements.txt`.
 ### 6. Loading Savestates
 
 This script requires some savestates to load from (ie the start of the race).
-In this repository, we include some different savestates which you will need.
-Take these savestates, and drag them into the following folder:
+In this repository, we include some different savestates which you will need (in the `savestates` folder).
+To get around Github's 25MB file size limit, they are uploaded as ZIP files.
+Please unzip the files, and move the files (files, not folders) to your:
 
 `dolphin0\User\StatesSaves`
 
