@@ -104,6 +104,8 @@ Then, please test the AI works by running `python BTR.py --testing`.
 
 Once you've confirmed things work, run `python BTR.py`, which will run the Beyond The Rainbow algorithm on the Mario Kart environment.
 
+---
+
 ### 7. What to Expect
 
 1. For the first 200k timesteps, the agent will simply execute a random policy, so don't expect to see any improvements during this time.
