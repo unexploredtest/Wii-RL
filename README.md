@@ -88,6 +88,8 @@ Run `Dolphin.exe` and follow these steps (many are optional, but these settings 
 
 To install the relevant libraries, please do `pip install requirements.txt`.
 
+---
+
 ### 6. Running The AI with Dolphin
 
 You can control how many instances of Dolphin to run in parallel. On high Spec machines with many cores, I recommend 4 (or 8 if you're cooling system is really good).
