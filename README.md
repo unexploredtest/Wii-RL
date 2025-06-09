@@ -90,7 +90,16 @@ To install the relevant libraries, please do `pip install requirements.txt`.
 
 ---
 
-### 6. Running The AI with Dolphin
+### 6. Loading Savestates
+
+This script requires some savestates to load from (ie the start of the race).
+In this repository, we include some different savestates which you will need.
+Take these savestates, and drag them into the following folder:
+
+`dolphin0\User\StatesSaves`
+
+---
+### 7. Running The AI with Dolphin
 
 You can control how many instances of Dolphin to run in parallel. On high Spec machines with many cores, I recommend 4 (or 8 if you're cooling system is really good).
 Be warned however, this will put some serious strain on your machine.
@@ -106,7 +115,7 @@ Once you've confirmed things work, run `python BTR.py`, which will run the Beyon
 
 ---
 
-### 7. What to Expect
+### 8. What to Expect
 
 1. For the first 200k timesteps, the agent will simply execute a random policy, so don't expect to see any improvements during this time.
 2. From 200k timesteps to 2M timesteps, the agent will slowly use fewer random actions, but during this period it may be hard to see any improvement.
