@@ -25,11 +25,19 @@ To correctly allow this repo to interact with Dolphin, please follow these steps
 -Within the dolphin folder, locate the folder that contains the dolphin.exe. In this directory, create a blank file called portable.txt
 
 Run Dolphin.exe, and follow these steps (many are optional, but it's what I use and has been tested):
+
 -Options -> Configuration -> Paths -> Add the folder whever your Mario Kart .iso is saved.
+
 -Graphics -> Enchancements -> Internal Resolution-> 640x528
+
 -Graphics -> Backend -> Vulkan (optional, OpenGL works but slightly slower for me)
+
 -Graphics -> Tick Auto-adjust Window Size
+
 -Options -> Configuration -> Interface -> Disable (Confirm on Stop, Use Panic Handlers, Show on-screen display messages, Show active title). These are optional but I prefer them.
+
 -Options -> Configuration -> General -> Speed Limit -> Unlimited (100% Works fine, but can run faster on unlimited. Also try not to kill your PC).
+
 -Options -> Configuration -> Audio -> Audio Backend -> No Audio Output (If you forget to do this, RIP your ears).
+
 -View -> Tick (Show Log, Show log configurations). This allows you to see debug messages.
