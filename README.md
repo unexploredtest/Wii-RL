@@ -45,7 +45,7 @@ https://arxiv.org/abs/2411.03820
 Once you've installed the above, you will need to download the game, Mario Kart Wii.  
 We cannot legally distribute this ROM, so you will need to acquire a Mario Kart Wii ROM yourself.
 
-- **We use the European RMCP01 version of the game, `mkw.iso`.**  
+- **We use the European RMCP01 version of the game, `mkw.iso` (4.38GB).**  
   Please install this version to avoid other potential issues.
 
 ---
