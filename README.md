@@ -83,3 +83,31 @@ Run `Dolphin.exe` and follow these steps (many are optional, but these settings 
   (This allows you to see debug messages.)
 
 ---
+
+### 5. Installing Libraries
+
+To install the relevant libraries, please do `pip install requirements.txt`.
+
+### 6. Running The AI with Dolphin
+
+You can control how many instances of Dolphin to run in parallel. On high Spec machines with many cores, I recommend 4 (or 8 if you're cooling system is really good).
+Be warned however, this will put some serious strain on your machine.
+
+However many instances of Dolphin you want to run, you will need that many installations of Dolphin. 
+For 4 instances, you will need to copy your `dolphin0` folder, such that you have 4 folders named `dolphin0`, `dolphin1`, `dolphin2`, `dolphin3`.
+
+To test your installiation, I recommend first running `python DolphinEnv.py`. This will allow you to control the race yourself and test things are working.
+
+Then, please test the AI works by running `python BTR.py --testing`. 
+
+Once you've confirmed things work, run `python BTR.py`, which will run the Beyond The Rainbow algorithm on the Mario Kart environment.
+
+### 7. What to Expect
+
+1. For the first 200k timesteps, the agent will simply execute a random policy, so don't expect to see any improvements during this time.
+2. From 200k timesteps to 2M timesteps, the agent will slowly use fewer random actions, but during this period it may be hard to see any improvement.
+3. At 2M-5M timesteps, you should be able to easily some improvements. If not, something is probably messed up.
+4. When testing this on an i9-13900k and RTX4090, it takes around 12 Hours to get an agent which can consistently finish the race.
+
+Best of Luck!
+
