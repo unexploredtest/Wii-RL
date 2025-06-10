@@ -10,6 +10,7 @@ import os
 from multiprocessing import shared_memory
 import threading
 import signal
+import hashlib
 
 # remove any existing shared memory
 try:
@@ -41,6 +42,18 @@ def set_value(new_val: float):
     Overwrite shared_value.txt in the current directory with the given float.
     """
     FILE_PATH.write_text(str(float(new_val)))
+
+def calculate_md5(file_path):
+    """
+    Calculates a file's md5
+    """
+    md5_hash = hashlib.md5()
+    
+    with open(file_path, "rb") as file:
+        for chunk in iter(lambda: file.read(4096), b""):
+            md5_hash.update(chunk)
+    
+    return md5_hash.hexdigest()
 
 class DolphinEnv:
     def __init__(self, num_envs, gamename="LC", gamefile="mkw.iso", project_folder=None,
@@ -74,6 +87,7 @@ class DolphinEnv:
 
         self.project_folder = Path(project_folder) if not isinstance(project_folder, Path) else project_folder
         self.games_folder = Path(games_folder) if not isinstance(games_folder, Path) else games_folder
+        self._check_iso_validity()
         self.instance_info_folder = Path('instance_info')
         self.instance_info_folder.mkdir(exist_ok=True)
 
@@ -114,6 +128,21 @@ class DolphinEnv:
         (self.instance_info_folder / 'pid_num.txt').write_text('0')
         for i in range(self.num_envs):
             self.create_dolphin(i)
+
+    def _check_iso_validity(self):
+        valid_numbers = [
+            'e7b1ff1fabb0789482ce2cb0661d986e',
+            'ba68b5d7602bb6cd3d51f301f205e3dd'
+        ]
+
+        game_path = self.games_folder / self.gamefile
+
+        if(not os.path.exists(game_path)):
+            raise FileNotFoundError(f"File {game_path} doesn't exist.")
+        elif(calculate_md5(game_path) not in valid_numbers):
+            print("Warning: Unsupported ROM, might encounter some issues. Please refer to README.md.")
+        else:
+            print("The ROM provided is valid.")
 
     def increment_alive(self, path='alive.txt'):
         path = Path(path)
