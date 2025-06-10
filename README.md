@@ -95,8 +95,8 @@ To install the relevant libraries, please do `pip install requirements.txt`.
 
 This script requires some savestates to load from (ie the start of the race).
 In this repository, we include some different savestates which you will need (in the `savestates` folder).
-To get around Github's 25MB file size limit, they are uploaded as ZIP files.
-Please unzip the files, and move the files (files, not folders) to your:
+There is a zip file containing all the savestates you need in `releases/MarioKartSaveStates`.
+Unzip this file, and place the files into this directory:
 
 `dolphin0\User\StatesSaves`
 
