@@ -33,8 +33,9 @@ https://arxiv.org/abs/2411.03820
   _(It needs to be this version as the Dolphin Scripting Fork relies on it)_  
   https://www.python.org/downloads/release/python-3120/
 
-- Download **Felk's Fork of Dolphin**, which allows programmatic input to the emulator via Python  
-  https://github.com/Felk/dolphin/releases
+- Download **Felk's Fork of Dolphin**, which allows programmatic input to the emulator via Python
+- `https://github.com/VIPTankz/Wii-RL/releases/tag/dolphin`
+  (The original repository can be found at `https://github.com/Felk/dolphin/releases`. However we highly recommend using our version listed above, as many settings have been changed, and we use a very specfic commit of this repository.)
 
 - Download **Visual Studio's C++ build tools package**
 
