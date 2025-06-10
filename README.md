@@ -39,6 +39,8 @@ https://arxiv.org/abs/2411.03820
 
 - Download **Visual Studio's C++ build tools package**
 
+- Clone this repository `git clone https://github.com/VIPTankz/Wii-RL.git`
+
 ---
 
 ### 2. Game ROM
