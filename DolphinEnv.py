@@ -4,6 +4,7 @@ import time
 import subprocess
 from pathlib import Path
 from multiprocessing.connection import Listener
+import site
 import gymnasium as gym
 import numpy as np
 import os
@@ -25,6 +26,7 @@ except Exception as e:
     print(f"Error cleaning old shared memory: {e}")
 
 FILE_PATH = Path.cwd() / "shared_value.txt"
+SITE_FILE_PATH = Path.cwd() / "shared_site.txt"
 INITIAL_VALUE = 99999.
 
 def get_value() -> float:
@@ -43,6 +45,7 @@ def set_value(new_val: float):
     """
     FILE_PATH.write_text(str(float(new_val)))
 
+
 def calculate_md5(file_path):
     """
     Calculates a file's md5
@@ -54,6 +57,16 @@ def calculate_md5(file_path):
             md5_hash.update(chunk)
     
     return md5_hash.hexdigest()
+  
+def set_shared_site():
+    """
+    Writes the path to site-packages for DolphinEnv to use
+    """
+    sites_paths = site.getsitepackages()
+    for path in sites_paths:
+        if 'site-packages' in path:
+            SITE_FILE_PATH.write_text(path)
+            break 
 
 class DolphinEnv:
     def __init__(self, num_envs, gamename="LC", gamefile="mkw.iso", project_folder=None,
@@ -96,6 +109,8 @@ class DolphinEnv:
 
         self.ids = list(range(self.num_envs))
         self.script_pids = [-1] * self.num_envs
+
+        set_shared_site()
 
         self.shm = shared_memory.SharedMemory(create=True,
                                               size=self.num_envs * self.framestack * self.window_x * self.window_y,
