@@ -300,7 +300,7 @@ class ImpalaCNNLargeIQN(nn.Module):
 
     def load_checkpoint(self, name):
         #print('... loading checkpoint ...')
-        self.load_state_dict(torch.load(name))
+        self.load_state_dict(torch.load(name, map_location=self.device))
 
 
 ################# Now Entering the Prioritized Experience Replay Section
