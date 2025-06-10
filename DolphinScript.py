@@ -39,7 +39,7 @@ def increment_alive(path='alive.txt'):
     return alive_num
 
 script_directory = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
-save_states_path = script_directory + f"\\savestates\\"
+save_states_path = script_directory + f"\\MarioKartSaveStates\\"
 
 instance_info_folder = Path('instance_info')
 
