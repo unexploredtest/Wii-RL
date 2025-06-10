@@ -73,7 +73,7 @@ To install the relevant libraries, please do `pip install requirements.txt`.
 ### 5. Loading Savestates
 
 This script requires some savestates to load from (ie the start of the race).
-In this repository, we include some different savestates which you will need (in the `savestates` folder).
+
 There is a zip file containing all the savestates you need in `[releases/MarioKartSaveStates](https://github.com/VIPTankz/Wii-RL/releases/tag/savestates)`.
 Unzip this file, and place the files into this directory:
 
