@@ -6,9 +6,18 @@ from dolphin import event, gui, savestate, memory, controller
 
 import sys
 import os
+import inspect
+from pathlib import Path
+
+script_directory = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+shared_site_path = Path(script_directory) / "shared_site.txt"
 
 # add libraries from your python install (needs to match dolphin version (currently 3.12))
-sys.path.append(r"C:\Users\Tyler\AppData\Local\Programs\Python\Python312\Lib\site-packages")
+if shared_site_path.exists() and shared_site_path.is_file():
+    with open(shared_site_path, 'r', encoding='utf-8') as file:
+        site_path = file.read()
+    
+    sys.path.append(site_path)
 
 # Now we can import other libraries safely
 try:
@@ -17,7 +26,6 @@ try:
     import random
     import math
     import numpy as np
-    from pathlib import Path
     from collections import deque
     from multiprocessing.connection import Client
     from PIL import Image, ImageEnhance
@@ -32,6 +40,8 @@ def increment_alive(path='alive.txt'):
     alive_num = int(path.read_text().strip()) if path.exists() else 0
     path.write_text(str(alive_num + 1))
     return alive_num
+
+save_states_path = script_directory + f"\\MarioKartSaveStates\\"
 
 instance_info_folder = Path('instance_info')
 
@@ -432,7 +442,7 @@ class DolphinInstance:
         x = random.randint(2, 8)
 
         # reset environment back to savestate
-        savestate.load_from_slot(x)
+        savestate.load_from_file(save_states_path + f"RMCP01.s0{x}")
 
         self.memory_tracker = Memory()
 

@@ -33,8 +33,9 @@ https://arxiv.org/abs/2411.03820
   _(It needs to be this version as the Dolphin Scripting Fork relies on it)_  
   https://www.python.org/downloads/release/python-3120/
 
-- Download **Felk's Fork of Dolphin**, which allows programmatic input to the emulator via Python  
-  
+- Download **Felk's Fork of Dolphin**, which allows programmatic input to the emulator via Python
+  `https://github.com/VIPTankz/Wii-RL/releases/tag/dolphin`
+- (The original repository can be found at `https://github.com/Felk/dolphin/releases`. However we highly recommend using our version listed above, as many settings have been changed, and we use a very specfic commit of this repository.)
 
 - Download **Visual Studio's C++ build tools package**
 
@@ -44,9 +45,11 @@ https://arxiv.org/abs/2411.03820
 
 Once you've installed the above, you will need to download the game, Mario Kart Wii.  
 We cannot legally distribute this ROM, so you will need to acquire a Mario Kart Wii ROM yourself.
+When you acquire the ROM, rename it to `mkw.iso` and put it in the directory `game`.
 
 - **We use the European RMCP01 version of the game, `mkw.iso` (4.38GB).**  
   Please install this version to avoid other potential issues.
+  (MD5 checksum e7b1ff1fabb0789482ce2cb0661d986e)
 
 ---
 
@@ -61,46 +64,23 @@ To correctly allow this repo to interact with Dolphin, please follow these steps
 
 ---
 
-### 4. Configuring Dolphin
-
-Run `Dolphin.exe` and follow these steps (many are optional, but these settings have been tested):
-
-- Options → Configuration → Paths → Add the folder where your Mario Kart `.iso` is saved.
-- Graphics → Enhancements → Internal Resolution → 640x528
-- Graphics → Backend → Vulkan (optional, OpenGL works but is slightly slower for me)
-- Graphics → Tick **Auto-adjust Window Size**
-- Options → Configuration → Interface → Disable:
-    - Confirm on Stop
-    - Use Panic Handlers
-    - Show on-screen display messages
-    - Show active title  
-  (These are optional but are my preference.)
-- Options → Configuration → General → Speed Limit → Unlimited  
-  (100% works fine, but can run faster on unlimited. Also, try not to overload your PC.)
-- Options → Configuration → Audio → Audio Backend → No Audio Output  
-  (If you forget to do this, the audio can be very loud.)
-- View → Tick **Show Log** and **Show log configurations**.  
-  (This allows you to see debug messages.)
-
----
-
-### 5. Installing Libraries
+### 4. Installing Libraries
 
 To install the relevant libraries, please do `pip install requirements.txt`.
 
 ---
 
-### 6. Loading Savestates
+### 5. Loading Savestates
 
 This script requires some savestates to load from (ie the start of the race).
-In this repository, we include some different savestates which you will need (in the `savestates` folder).
-To get around Github's 25MB file size limit, they are uploaded as ZIP files.
-Please unzip the files, and move the files (files, not folders) to your:
+
+There is a zip file containing all the savestates you need in `[releases/MarioKartSaveStates](https://github.com/VIPTankz/Wii-RL/releases/tag/savestates)`.
+Unzip this file, and place the files into this directory:
 
 `dolphin0\User\StatesSaves`
 
 ---
-### 7. Running The AI with Dolphin
+### 6. Running The AI with Dolphin
 
 You can control how many instances of Dolphin to run in parallel. On high Spec machines with many cores, I recommend 4 (or 8 if you're cooling system is really good).
 Be warned however, this will put some serious strain on your machine.
@@ -116,7 +96,7 @@ Once you've confirmed things work, run `python BTR.py`, which will run the Beyon
 
 ---
 
-### 8. What to Expect
+### 7. What to Expect
 
 1. For the first 200k timesteps, the agent will simply execute a random policy, so don't expect to see any improvements during this time.
 2. From 200k timesteps to 2M timesteps, the agent will slowly use fewer random actions, but during this period it may be hard to see any improvement.

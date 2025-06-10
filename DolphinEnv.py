@@ -4,12 +4,14 @@ import time
 import subprocess
 from pathlib import Path
 from multiprocessing.connection import Listener
+import site
 import gymnasium as gym
 import numpy as np
 import os
 from multiprocessing import shared_memory
 import threading
 import signal
+import hashlib
 
 # remove any existing shared memory
 try:
@@ -24,6 +26,7 @@ except Exception as e:
     print(f"Error cleaning old shared memory: {e}")
 
 FILE_PATH = Path.cwd() / "shared_value.txt"
+SITE_FILE_PATH = Path.cwd() / "shared_site.txt"
 INITIAL_VALUE = 99999.
 
 def get_value() -> float:
@@ -42,9 +45,41 @@ def set_value(new_val: float):
     """
     FILE_PATH.write_text(str(float(new_val)))
 
+
+def calculate_md5(file_path):
+    """
+    Calculates a file's md5
+    """
+    md5_hash = hashlib.md5()
+    
+    with open(file_path, "rb") as file:
+        for chunk in iter(lambda: file.read(4096), b""):
+            md5_hash.update(chunk)
+    
+    return md5_hash.hexdigest()
+  
+def set_shared_site():
+    """
+    Writes the path to site-packages for DolphinEnv to use
+    """
+    sites_paths = site.getsitepackages()
+    for path in sites_paths:
+        if 'site-packages' in path:
+            SITE_FILE_PATH.write_text(path)
+            break 
+
 class DolphinEnv:
-    def __init__(self, num_envs, gamename="LC", gamefile="mkw.iso", project_folder=r"C:\Users\Tyler\Documents\RL4",
-                 games_folder=r"C:\Users\Tyler\Documents\RL3\GameCollection"):
+    def __init__(self, num_envs, gamename="LC", gamefile="mkw.iso", project_folder=None,
+                 games_folder=None):
+
+        script_directory = os.path.dirname(os.path.abspath(__file__))
+
+        if(project_folder == None):
+            project_folder = script_directory
+
+        if(games_folder == None):
+            games_folder = script_directory + r"\\game\\"
+
         self.num_envs = num_envs
         self.gamename = gamename
         self.gamefile = gamefile
@@ -65,6 +100,7 @@ class DolphinEnv:
 
         self.project_folder = Path(project_folder) if not isinstance(project_folder, Path) else project_folder
         self.games_folder = Path(games_folder) if not isinstance(games_folder, Path) else games_folder
+        self._check_iso_validity()
         self.instance_info_folder = Path('instance_info')
         self.instance_info_folder.mkdir(exist_ok=True)
 
@@ -73,6 +109,8 @@ class DolphinEnv:
 
         self.ids = list(range(self.num_envs))
         self.script_pids = [-1] * self.num_envs
+
+        set_shared_site()
 
         self.shm = shared_memory.SharedMemory(create=True,
                                               size=self.num_envs * self.framestack * self.window_x * self.window_y,
@@ -106,6 +144,21 @@ class DolphinEnv:
         for i in range(self.num_envs):
             self.create_dolphin(i)
 
+    def _check_iso_validity(self):
+        valid_numbers = [
+            'e7b1ff1fabb0789482ce2cb0661d986e',
+            'ba68b5d7602bb6cd3d51f301f205e3dd'
+        ]
+
+        game_path = self.games_folder / self.gamefile
+
+        if(not os.path.exists(game_path)):
+            raise FileNotFoundError(f"File {game_path} doesn't exist.")
+        elif(calculate_md5(game_path) not in valid_numbers):
+            print("Warning: Unsupported ROM, might encounter some issues. Please refer to README.md.")
+        else:
+            print("The ROM provided is valid.")
+
     def increment_alive(self, path='alive.txt'):
         path = Path(path)
         alive_num = int(path.read_text().strip()) if path.exists() else 0
@@ -130,9 +183,9 @@ class DolphinEnv:
 
         # launch the process
         cmd = (
-            f'cmd /c {self.project_folder}/rl4{self.gamename}/dolphin{i}\\Dolphin.exe '
+            f'cmd /c {self.project_folder}/dolphin{i}\\Dolphin.exe '
             f'--no-python-subinterpreters '
-            f'--script "{self.project_folder}/rl4{self.gamename}/DolphinScript.py" '
+            f'--script "{self.project_folder}\\DolphinScript.py" '
             f'\\b --exec="{self.games_folder/self.gamefile}"'
         )
         print(f"[Master] Opening File: {cmd}")
@@ -347,9 +400,7 @@ if __name__ == "__main__":
     dolphin_env = DolphinEnv(
         num_envs=num_envs,
         gamename="LC",
-        gamefile="mkw.iso",
-        project_folder=r"C:\Users\Tyler\Documents\RL4",
-        games_folder=r"C:\Users\Tyler\Documents\RL3\GameCollection"
+        gamefile="mkw.iso"
     )
 
     from pynput import keyboard
