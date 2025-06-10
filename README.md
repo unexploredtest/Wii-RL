@@ -35,7 +35,7 @@ https://arxiv.org/abs/2411.03820
 
 - Download **Felk's Fork of Dolphin**, which allows programmatic input to the emulator via Python
 - `https://github.com/VIPTankz/Wii-RL/releases/tag/dolphin`
-  (The original repository can be found at `https://github.com/Felk/dolphin/releases`. However we highly recommend using our version listed above, as many settings have been changed, and we use a very specfic commit of this repository.)
+- (The original repository can be found at `https://github.com/Felk/dolphin/releases`. However we highly recommend using our version listed above, as many settings have been changed, and we use a very specfic commit of this repository.)
 
 - Download **Visual Studio's C++ build tools package**
 
