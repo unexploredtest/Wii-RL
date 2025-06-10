@@ -43,8 +43,17 @@ def set_value(new_val: float):
     FILE_PATH.write_text(str(float(new_val)))
 
 class DolphinEnv:
-    def __init__(self, num_envs, gamename="LC", gamefile="mkw.iso", project_folder=r"C:\Users\Tyler\Documents\RL4",
-                 games_folder=r"C:\Users\Tyler\Documents\RL3\GameCollection"):
+    def __init__(self, num_envs, gamename="LC", gamefile="mkw.iso", project_folder=None,
+                 games_folder=None):
+
+        script_directory = os.path.dirname(os.path.abspath(__file__))
+
+        if(project_folder == None):
+            project_folder = script_directory
+
+        if(games_folder == None):
+            games_folder = script_directory + r"\\game\\"
+
         self.num_envs = num_envs
         self.gamename = gamename
         self.gamefile = gamefile
@@ -130,9 +139,9 @@ class DolphinEnv:
 
         # launch the process
         cmd = (
-            f'cmd /c {self.project_folder}/rl4{self.gamename}/dolphin{i}\\Dolphin.exe '
+            f'cmd /c {self.project_folder}/dolphin{i}\\Dolphin.exe '
             f'--no-python-subinterpreters '
-            f'--script "{self.project_folder}/rl4{self.gamename}/DolphinScript.py" '
+            f'--script "{self.project_folder}\\DolphinScript.py" '
             f'\\b --exec="{self.games_folder/self.gamefile}"'
         )
         print(f"[Master] Opening File: {cmd}")
@@ -347,9 +356,7 @@ if __name__ == "__main__":
     dolphin_env = DolphinEnv(
         num_envs=num_envs,
         gamename="LC",
-        gamefile="mkw.iso",
-        project_folder=r"C:\Users\Tyler\Documents\RL4",
-        games_folder=r"C:\Users\Tyler\Documents\RL3\GameCollection"
+        gamefile="mkw.iso"
     )
 
     from pynput import keyboard
