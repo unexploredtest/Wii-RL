@@ -1,15 +1,10 @@
 @echo off
 setlocal
 
-set "url=https://github.com/unexploredtest/dolphin/releases/download/dolphin-mariokart/Dolphin.zip"
+set "url=https://github.com/VIPTankz/Wii-RL/releases/download/dolphin/dolphin0.zip"
 set "outputDir=dolphin0\"
-set "zipFile=%outputDir%\Dolphin.zip"
+set "zipFile=Dolphin.zip"
 set "decompressedDir=%outputDir%"
-
-:: Create output directory if it doesn't exist
-if not exist "%outputDir%" (
-    mkdir "%outputDir%"
-)
 
 echo Downloading ZIP file...
 curl -L -o "%zipFile%" "%url%"
@@ -18,7 +13,7 @@ if errorlevel 1 (
     exit /b 1
 )
 
-tar -xf "%zipFile%" -C %outputDir%
+tar -xf "%zipFile%"
 
 if errorlevel 1 (
     echo Extraction failed.
@@ -27,15 +22,8 @@ if errorlevel 1 (
 
 echo Files extracted to "%outputDir%".
 
-@REM @REM :: Clean up the downloaded ZIP file
-@REM del "%zipFile%"
-
-@REM set "filename=portable.txt"  :: Replace with your desired file name
-
-@REM @REM :: Create an empty file
-@REM type nul > "%outputDir%\%filename%"
-
-@REM echo File "%outputDir%\%filename%" created.
+@REM :: Clean up the downloaded ZIP file
+del "%zipFile%"
 
 echo Creating Dolphin 1...
 xcopy "%outputDir%" "dolphin1" /E /I /Y

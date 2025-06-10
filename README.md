@@ -34,7 +34,7 @@ https://arxiv.org/abs/2411.03820
   https://www.python.org/downloads/release/python-3120/
 
 - Download **Felk's Fork of Dolphin**, which allows programmatic input to the emulator via Python  
-  https://github.com/unexploredtest/dolphin/releases/tag/dolphin-mariokart
+  
 
 - Download **Visual Studio's C++ build tools package**
 
