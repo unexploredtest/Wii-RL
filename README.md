@@ -33,10 +33,6 @@ https://arxiv.org/abs/2411.03820
   _(It needs to be this version as the Dolphin Scripting Fork relies on it)_  
   https://www.python.org/downloads/release/python-3120/
 
-- Download **Felk's Fork of Dolphin**, which allows programmatic input to the emulator via Python
-  `https://github.com/VIPTankz/Wii-RL/releases/tag/dolphin`
-- (The original repository can be found at `https://github.com/Felk/dolphin/releases`. However we highly recommend using our version listed above, as many settings have been changed, and we use a very specfic commit of this repository.)
-
 - Download **Visual Studio's C++ build tools package**
   `https://visualstudio.microsoft.com/downloads/`, then install `Desktop development with C++`
 
@@ -60,10 +56,9 @@ When you acquire the ROM, rename it to `mkw.iso` and put it in the directory `ga
 
 To correctly allow this repo to interact with Dolphin, please follow these steps:
 
-1. After cloning this repo, move your downloaded version of Dolphin into this folder.
-2. Rename the Dolphin folder to `dolphin0`.
-3. Within the `dolphin0` folder, locate the directory that contains `dolphin.exe`.
-4. In this directory, create a blank file called `portable.txt`.
+1. Download **Felk's Fork of Dolphin**, which allows programmatic input to the emulator via Python. This can be done via running the script `download_dolphin.bat`.
+   (The original repository can be found at `https://github.com/Felk/dolphin/releases`. However we highly recommend using our version listed above, as many settings have been changed, and we use a very specfic commit of this repository.)
+2. 
 
 ---
 
