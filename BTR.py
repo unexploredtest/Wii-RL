@@ -953,7 +953,7 @@ class Agent:
         self.epsilon.update_eps()
         self.env_steps += 1
 
-        if self.env_steps > self.min_sampling_size + 100:
+        if self.env_steps == self.min_sampling_size + 100:
             print("Training is running successfully!")
 
     def replace_target_network(self):
