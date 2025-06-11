@@ -65,6 +65,7 @@ To correctly allow this repo to interact with Dolphin, please follow these steps
 ### 4. Installing Libraries
 
 To install the relevant libraries, please do `pip install -r requirements.txt`.
+(We do also include `environment.yml` if you want to install via conda).
 
 ---
 
