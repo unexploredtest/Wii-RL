@@ -58,7 +58,7 @@ To correctly allow this repo to interact with Dolphin, please follow these steps
 
 1. Download **Felk's Fork of Dolphin**, which allows programmatic input to the emulator via Python. This can be done via running the script `download_dolphin.bat`.
    (The original repository can be found at `https://github.com/Felk/dolphin/releases`. However we highly recommend using our version listed above, as many settings have been changed, and we use a very specfic commit of this repository.)
-2. 
+2. Download the savestates (these control the AI's starting position) via running `download_savestates.bat`.
 
 ---
 
