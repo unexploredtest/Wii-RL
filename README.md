@@ -64,7 +64,7 @@ To correctly allow this repo to interact with Dolphin, please follow these steps
 
 ### 4. Installing Libraries
 
-To install the relevant libraries, please do `pip install requirements.txt`.
+To install the relevant libraries, please do `pip install -r requirements.txt`.
 
 ---
 
