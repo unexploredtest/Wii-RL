@@ -67,19 +67,19 @@ To correctly allow this repo to interact with Dolphin, please follow these steps
 To install the relevant libraries, please do `pip install -r requirements.txt`.
 
 ---
+
+### 5. Download a Pre-Trained Model
+
+While we provide code to train your own models, we also include a model for you to run and test. To use this model, download the pytorch model file from `https://github.com/VIPTankz/Wii-RL/releases/tag/model`, and place this in this directory.
+
+---
 ### 6. Running The AI with Dolphin
 
-You can control how many instances of Dolphin to run in parallel. On high Spec machines with many cores, I recommend 4 (or 8 if you're cooling system is really good).
-Be warned however, this will put some serious strain on your machine.
+To first test whether everything is set up as intended, we recommend first running `BTR_test.py`. This will run the pretrained model installed in the last step, in two emulators in parallel.
 
-However many instances of Dolphin you want to run, you will need that many installations of Dolphin. 
-For 4 instances, you will need to copy your `dolphin0` folder, such that you have 4 folders named `dolphin0`, `dolphin1`, `dolphin2`, `dolphin3`.
+To test if training on your machine works quickly, you can also run `BTR.py --testing 1`.
 
-To test your installiation, I recommend first running `python DolphinEnv.py`. This will allow you to control the race yourself and test things are working.
-
-Then, please test the AI works by running `python BTR.py --testing 1`. 
-
-Once you've confirmed things work, run `python BTR.py`, which will run the Beyond The Rainbow algorithm on the Mario Kart environment.
+To actually do your own training, simply run `BTR.py`. This will use 4 instances of dolphin by default. This will put quite some strain on most PCs, so you may want to reduce this to 2 or 1 (You can also do 8 if you have a crazy good machine and don't mind your fans going crazy).
 
 ---
 
