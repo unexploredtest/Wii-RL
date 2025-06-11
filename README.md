@@ -67,17 +67,6 @@ To correctly allow this repo to interact with Dolphin, please follow these steps
 To install the relevant libraries, please do `pip install -r requirements.txt`.
 
 ---
-
-### 5. Loading Savestates
-
-This script requires some savestates to load from (ie the start of the race).
-
-There is a zip file containing all the savestates you need in `[releases/MarioKartSaveStates](https://github.com/VIPTankz/Wii-RL/releases/tag/savestates)`.
-Unzip this file, and place the files into this directory:
-
-`dolphin0\User\StatesSaves`
-
----
 ### 6. Running The AI with Dolphin
 
 You can control how many instances of Dolphin to run in parallel. On high Spec machines with many cores, I recommend 4 (or 8 if you're cooling system is really good).
