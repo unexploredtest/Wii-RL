@@ -38,6 +38,7 @@ https://arxiv.org/abs/2411.03820
 - (The original repository can be found at `https://github.com/Felk/dolphin/releases`. However we highly recommend using our version listed above, as many settings have been changed, and we use a very specfic commit of this repository.)
 
 - Download **Visual Studio's C++ build tools package**
+  `https://visualstudio.microsoft.com/downloads/`, then install `Desktop development with C++`
 
 - Clone this repository `git clone https://github.com/VIPTankz/Wii-RL.git`
 
