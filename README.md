@@ -76,7 +76,7 @@ While we provide code to train your own models, we also include a model for you 
 ---
 ### 6. Running The AI with Dolphin
 
-To first test whether everything is set up as intended, we recommend first running `.\BTR_test.py --YOUR_MODEL_PATH_HERE`. This will run the pretrained model installed in the last step, in two emulators in parallel.
+To first test whether everything is set up as intended, we recommend first running `.\BTR_test.py --model_path YOUR_MODEL_PATH_HERE`. This will run the pretrained model installed in the last step, in two emulators in parallel.
 
 To test if training on your machine works quickly, you can also run `BTR.py --testing 1`.
 
