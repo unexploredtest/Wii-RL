@@ -95,3 +95,12 @@ To actually do your own training, simply run `python BTR.py`. This will use 4 in
 
 Best of Luck!
 
+---
+
+### 8. FAQs
+
+1. Can I run this on MacOS/Linux/{my_favourite_os}?
+Currently this has only been tested on Windows, and currently is unlikely to work for other operating systems. Later down the line, I hope to add support for Linux, but not sure when that will be just yet.
+
+2. Can I play games other than Mario Kart Wii?
+Currently this repository only supports a basic scenario using Mario Kart Wii on Luigi Circuit, however when doing videos I might try to add new content for people to play around with. It may take a little while, but you are welcome to attempt to use this repo to get an AI to play your favourite games.
