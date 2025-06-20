@@ -10,7 +10,9 @@ import inspect
 from pathlib import Path
 
 script_directory = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
-shared_site_path = Path(script_directory) / "shared_site.txt"
+script_directory = Path(script_directory)
+
+shared_site_path = script_directory / "shared_site.txt"
 
 # add libraries from your python install (needs to match dolphin version (currently 3.12))
 if shared_site_path.exists() and shared_site_path.is_file():
@@ -443,7 +445,7 @@ class DolphinInstance:
 
         # reset environment back to savestate
         save_state_path = save_states_path / f"RMCP01.s0{x}"
-        savestate.load_from_file(save_state_path)
+        savestate.load_from_file(str(save_state_path))
 
         self.memory_tracker = Memory()
 

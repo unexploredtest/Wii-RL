@@ -182,7 +182,7 @@ class DolphinEnv:
         (self.instance_info_folder/f'instance_id{i}.txt').write_text(str(i))
 
         exe_path = self.project_folder / f'dolphin{i}' / 'Dolphin.exe'
-        script_path = self.project_folder / DolphinScript.py
+        script_path = self.project_folder / 'DolphinScript.py'
 
         # launch the process
         cmd = (
