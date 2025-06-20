@@ -41,7 +41,7 @@ def increment_alive(path='alive.txt'):
     path.write_text(str(alive_num + 1))
     return alive_num
 
-save_states_path = script_directory + f"\\MarioKartSaveStates\\"
+save_states_path = script_directory + f"/MarioKartSaveStates/"
 
 instance_info_folder = Path('instance_info')
 
@@ -312,7 +312,8 @@ class DolphinInstance:
 
         try:
             # setup shared memory
-            self.shm = shared_memory.SharedMemory(name="states_shm")
+            # Make sure that the shared memory doesn't get deleted on upon exiting script by setting track=False
+            self.shm = shared_memory.SharedMemory(name="states_shm", track=False)
             self.states = np.ndarray(
                 (self.num_envs, self.framestack, self.window_y, self.window_x),
                 dtype=np.uint8,
@@ -321,6 +322,8 @@ class DolphinInstance:
         except Exception as e:
             print(e)
             print("Error when creating shared memory")
+            # with open("lol", "w") as lol:
+            #     lol.write(str(e))
 
         self.define_action_space()
         self.reset()
@@ -524,7 +527,8 @@ for i in range(4):
 
 env = DolphinInstance(id)
 
-for i in range(4):
+# For some reasons having a lower value will cause a craqweasdZXC123_!@#sh on Linux (vulkan)
+for i in range(8):
     await event.frameadvance()
 
 (width, height, data) = await event.framedrawn()
@@ -587,12 +591,12 @@ while True:
             env.send_transition(reward, terminal, trun, new_img.copy())
 
             # add some time here or dolphin seems to freeze up sometimes
-            for _ in range(2):
+            for _ in range(4):
                 await event.frameadvance()
 
             env.reset()
 
-            for _ in range(1):
+            for _ in range(4):
                 await event.frameadvance()
 
             # reset frame_buffer

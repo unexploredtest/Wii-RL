@@ -78,7 +78,7 @@ class DolphinEnv:
             project_folder = script_directory
 
         if(games_folder == None):
-            games_folder = script_directory + r"\\game\\"
+            games_folder = script_directory + "/game/"
 
         self.num_envs = num_envs
         self.gamename = gamename
@@ -183,10 +183,10 @@ class DolphinEnv:
 
         # launch the process
         cmd = (
-            f'cmd /c {self.project_folder}/dolphin{i}\\Dolphin.exe '
-            f'--no-python-subinterpreters '
-            f'--script "{self.project_folder}\\DolphinScript.py" '
-            f'\\b --exec="{self.games_folder/self.gamefile}"'
+            f'{self.project_folder}/dolphin{i}/dolphin-emu',
+            f'--no-python-subinterpreters',
+            f'--script', f'{self.project_folder}/DolphinScript.py',
+            f'\\b', f'--exec={self.games_folder/self.gamefile}'
         )
         print(f"[Master] Opening File: {cmd}")
         self.processes[i] = subprocess.Popen(cmd)
@@ -201,10 +201,10 @@ class DolphinEnv:
         alive_path = Path('alive.txt')
         while int(alive_path.read_text()) < alive_num + 2:
             time.sleep(0.05)
-
+   
         pid_file = self.instance_info_folder / f'script_pid{i}.txt'
         while not pid_file.exists():
-            time.sleep(0.01)
+            time.sleep(0.01)      
         self.script_pids[i] = int(pid_file.read_text())
 
         # final init‐state message

@@ -16,7 +16,7 @@ def main():
 
     parser.add_argument('--model_path', required=True, type=str)
     parser.add_argument('--envs', type=int, default=1)
-    parser.add_argument('--frames', type=int, default=10000)
+    parser.add_argument('--frames', type=int, default=100000)
     parser.add_argument('--eval_envs', type=int, default=1)
 
     parser.add_argument('--bs', type=int, default=256)
@@ -161,6 +161,7 @@ def main():
                 last_steps = steps
                 last_time = time.time()
 
+    print("lmao")
     # wait for our evaluations to finish before we quit the program
     for process in processes:
         process.join()
