@@ -41,7 +41,7 @@ def increment_alive(path='alive.txt'):
     path.write_text(str(alive_num + 1))
     return alive_num
 
-save_states_path = script_directory + f"\\MarioKartSaveStates\\"
+save_states_path = script_directory / "MarioKartSaveStates"
 
 instance_info_folder = Path('instance_info')
 
@@ -442,7 +442,8 @@ class DolphinInstance:
         x = random.randint(2, 8)
 
         # reset environment back to savestate
-        savestate.load_from_file(save_states_path + f"RMCP01.s0{x}")
+        save_state_path = save_states_path / f"RMCP01.s0{x}"
+        savestate.load_from_file(save_state_path)
 
         self.memory_tracker = Memory()
 
