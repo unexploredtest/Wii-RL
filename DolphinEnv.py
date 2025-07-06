@@ -182,12 +182,12 @@ class DolphinEnv:
         (self.instance_info_folder/'pid_num.txt').write_text(str(i))
         (self.instance_info_folder/f'instance_id{i}.txt').write_text(str(i))
 
-        exe_path = self.project_folder / f'dolphin{i}' / 'Dolphin.exe'
         script_path = self.project_folder / 'DolphinScript.py'
 
         # launch the process
         platform_name = platform.system()
         if(platform_name == "Windows"):
+            exe_path = self.project_folder / f'dolphin{i}' / 'Dolphin.exe'
             cmd = (
                 f'cmd /c {exe_path} '
                 f'--no-python-subinterpreters '
@@ -195,8 +195,9 @@ class DolphinEnv:
                 f'\\b --exec="{self.games_folder/self.gamefile}"'
             )
         elif(platform_name == "Linux"):
+            exe_path = self.project_folder / f'dolphin{i}' / 'dolphin-emu'
             cmd = (
-                f'{self.project_folder}/dolphin{i}/dolphin-emu',
+                f'{exe_path}',
                 f'--no-python-subinterpreters',
                 f'--script', f'{self.project_folder}/DolphinScript.py',
                 f'\\b', f'--exec={self.games_folder/self.gamefile}'
