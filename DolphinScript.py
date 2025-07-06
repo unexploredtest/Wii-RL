@@ -527,7 +527,7 @@ for i in range(4):
 
 env = DolphinInstance(id)
 
-for i in range(4):
+for i in range(8):
     await event.frameadvance()
 
 (width, height, data) = await event.framedrawn()
