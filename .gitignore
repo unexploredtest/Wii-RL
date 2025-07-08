@@ -1,0 +1,21 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[codz]
+*$py.class
+
+# Environments
+.env
+.venv
+env/
+venv/
+
+# Visual Studio Code
+.vscode/
+
+# Project-related files
+MarioKartSaveStates
+dolphin*
+BTR_MarioKart*
+instance_info
+shared_site.txt
+mkw.iso
