@@ -314,7 +314,11 @@ class DolphinInstance:
 
         try:
             # setup shared memory
-            self.shm = shared_memory.SharedMemory(name="states_shm")
+            if(sys.version_info[1] < 13):
+                self.shm = shared_memory.SharedMemory(name="states_shm")
+            else:
+                # Make sure that the shared memory doesn't get deleted on upon exiting script by setting track=False
+                self.shm = shared_memory.SharedMemory(name="states_shm", track=False)
             self.states = np.ndarray(
                 (self.num_envs, self.framestack, self.window_y, self.window_x),
                 dtype=np.uint8,
