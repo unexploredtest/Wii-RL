@@ -12,6 +12,7 @@ from multiprocessing import shared_memory
 import threading
 import signal
 import hashlib
+import platform
 
 # remove any existing shared memory
 try:
@@ -181,16 +182,29 @@ class DolphinEnv:
         (self.instance_info_folder/'pid_num.txt').write_text(str(i))
         (self.instance_info_folder/f'instance_id{i}.txt').write_text(str(i))
 
-        exe_path = self.project_folder / f'dolphin{i}' / 'Dolphin.exe'
         script_path = self.project_folder / 'DolphinScript.py'
 
         # launch the process
-        cmd = (
-            f'cmd /c {exe_path} '
-            f'--no-python-subinterpreters '
-            f'--script "{script_path}" '
-            f'\\b --exec="{self.games_folder/self.gamefile}"'
-        )
+        platform_name = platform.system()
+        if(platform_name == "Windows"):
+            exe_path = self.project_folder / f'dolphin{i}' / 'Dolphin.exe'
+            cmd = (
+                f'cmd /c {exe_path} '
+                f'--no-python-subinterpreters '
+                f'--script "{script_path}" '
+                f'\\b --exec="{self.games_folder/self.gamefile}"'
+            )
+        elif(platform_name == "Linux"):
+            exe_path = self.project_folder / f'dolphin{i}' / 'dolphin-emu'
+            cmd = (
+                f'{exe_path}',
+                f'--no-python-subinterpreters',
+                f'--script', f'{self.project_folder}/DolphinScript.py',
+                f'\\b', f'--exec={self.games_folder/self.gamefile}'
+            )
+        else:
+            raise RuntimeError(f"The operating system '{platform_name}' is not supported.")
+
         print(f"[Master] Opening File: {cmd}")
         self.processes[i] = subprocess.Popen(cmd)
 
