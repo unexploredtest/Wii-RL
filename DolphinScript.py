@@ -444,7 +444,7 @@ class DolphinInstance:
         # just make sure we don't list index out of range
         self.checkpoints.append(9999.)
 
-        # pick a random state
+        # pick a random state to reset to
         save_states = [file for file in Path(save_states_path).rglob('*') if file.is_file() and ".s" in str(file)]
         savestate.load_from_file(str(random.choice(save_states)))
 
