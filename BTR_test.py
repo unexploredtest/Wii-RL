@@ -26,6 +26,7 @@ def main():
     parser.add_argument('--framestack', type=int, default=4)
 
     # agent setup
+    parser.add_argument('--device', type=str, default=None)
     parser.add_argument('--nstep', type=int, default=3)
     parser.add_argument('--maxpool_size', type=int, default=6)
     parser.add_argument('--lr', type=float, default=1e-4)
@@ -59,6 +60,7 @@ def main():
     c = args.c
     lr = args.lr
     framestack = args.framestack
+    device_name = args.device
     nstep = args.nstep
     maxpool_size = args.maxpool_size
     munch_alpha = args.munch_alpha
@@ -91,9 +93,14 @@ def main():
 
     print("Currently Playing Game: " + str(game))
 
-    gpu = "0"
-    device = torch.device('cuda:' + gpu if torch.cuda.is_available() else 'cpu')
-    print(f"\nDevice: {device}.")
+    if(device_name == None):
+        gpu = "0"
+        device = torch.device('cuda:' + gpu if torch.cuda.is_available() else 'cpu')
+    else:
+        device = torch.device(device_name)
+    
+    print(f"\nDevice: {device}")
+
 
     env = DolphinEnv(envs)
     print(env.observation_space)
