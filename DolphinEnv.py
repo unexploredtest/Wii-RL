@@ -202,6 +202,16 @@ class DolphinEnv:
                 f'--script', f'{self.project_folder}/DolphinScript.py',
                 f'\\b', f'--exec={self.games_folder/self.gamefile}'
             )
+        elif(platform_name == "Darwin"):
+            exe_path = self.project_folder / f'dolphin{i}' / 'DolphinQt.app'
+            cmd = (
+                f'open',
+                f'{exe_path}',
+                '--args',
+                f'--no-python-subinterpreters',
+                f'--script', f'{self.project_folder}/DolphinScript.py',
+                f'\\b', f'--exec={self.games_folder/self.gamefile}'
+            )
         else:
             raise RuntimeError(f"The operating system '{platform_name}' is not supported.")
 
