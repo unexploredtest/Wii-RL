@@ -1,7 +1,10 @@
 import os
+import zipfile
+import tarfile
+
 import requests
 from tqdm import tqdm
-import zipfile
+
 
 def download_file(url, zip_file):
     print(f"Downloading {zip_file}...")
@@ -28,5 +31,14 @@ def extract_zip(zip_file_path, extract_to_dir):
     print(f"Extracting {zip_file_path} to {extract_to_dir}")
     with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
         zip_ref.extractall(extract_to_dir)
+
+    print("Extraction complete!")
+
+def extract_tar(tar_file_path, extract_to_dir):
+    os.makedirs(extract_to_dir, exist_ok=True)
+
+    print(f"Extracting {tar_file_path} to {extract_to_dir}")
+    with tarfile.open(file_path, 'r:gz') as tar_file:
+        tar_file.extractall(path=extract_to_dir)
 
     print("Extraction complete!")
