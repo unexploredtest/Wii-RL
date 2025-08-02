@@ -38,7 +38,7 @@ def extract_tar(tar_file_path, extract_to_dir):
     os.makedirs(extract_to_dir, exist_ok=True)
 
     print(f"Extracting {tar_file_path} to {extract_to_dir}")
-    with tarfile.open(file_path, 'r:gz') as tar_file:
+    with tarfile.open(tar_file_path, 'r:gz') as tar_file:
         tar_file.extractall(path=extract_to_dir)
 
     print("Extraction complete!")
