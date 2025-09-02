@@ -445,7 +445,7 @@ class DolphinInstance:
         self.checkpoints.append(9999.)
 
         # pick a random state to reset to
-        save_states = [file for file in Path(save_states_path).rglob('*') if file.is_file() and ".s" in str(file)]
+        save_states = [file for file in Path(save_states_path).rglob('*') if file.is_file() and ".s" in file.name]
         savestate.load_from_file(str(random.choice(save_states)))
 
         self.memory_tracker = Memory()
