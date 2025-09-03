@@ -29,6 +29,8 @@ https://arxiv.org/abs/2411.03820
 
 ### 1. Prerequisites
 
+#### Windows:
+
 - Download **Python 3.12**  
   _(It needs to be this version as the Dolphin Scripting Fork relies on it)_  
   https://www.python.org/downloads/release/python-3120/
@@ -36,8 +38,23 @@ https://arxiv.org/abs/2411.03820
 - Download **Visual Studio's C++ build tools package**
   `https://visualstudio.microsoft.com/downloads/`, then install `Desktop development with C++`
 
-- Clone this repository `git clone https://github.com/VIPTankz/Wii-RL.git`
+#### Linux:
+- You need to have Python 3.12 or higher installed system-wide using your package manager. If you're using a virtual environment, the version should match the system Python version.
 
+#### Mac OS:
+- You need to have Python 3.12 or higher installed.
+
+- To use the compiled Dolphin provided by the script, you have to have python 3.13.5 installed via Homebrew:
+   ```sh
+   brew update
+   brew install python@3.13.5
+   ```
+   If you're using a virtual environment, the version should match the one that is installed.
+
+#### Clone this repository:
+```sh
+git clone https://github.com/VIPTankz/Wii-RL.git
+```
 ---
 
 ### 2. Game ROM
@@ -52,13 +69,27 @@ When you acquire the ROM, rename it to `mkw.iso` and put it in the directory `ga
 
 ---
 
-### 3. Setting Up This Repository
+1. Download **Felk's Fork of Dolphin**, which allows programmatic input to the emulator via Python. This can be done by running the `download_dolphin.py` script as shown below (only Windows and macOS are supported):
+   ```sh
+   python3 scripts/download_dolphin.py
+   ```
+   For Linux, you need to compile Dolphin from source. You are likely to encounter build errors; open an issue if you do. Use the script `build-dolphin-linux.sh` as shown below:
 
-To correctly allow this repo to interact with Dolphin, please follow these steps:
+   ```sh
+   bash scripts/build-dolphin-linux.sh
+   ```
 
-1. Download **Felk's Fork of Dolphin**, which allows programmatic input to the emulator via Python. This can be done via running the script `download_dolphin.bat`.
-   (The original repository can be found at `https://github.com/Felk/dolphin/releases`. However we highly recommend using our version listed above, as many settings have been changed, and we use a very specfic commit of this repository.)
-2. Download the savestates (these control the AI's starting position) via running `download_savestates.bat`.
+   To run multiple instances of Dolphin for training, you need to clone the installed Dolphin. You can use the script `clone_dolphins.py` as shown below:
+
+   ```sh
+   python3 scripts/clone_dolphins.py
+   ```
+
+
+2. Download the save states (which control the AI's starting position) by running the `download_savestates.py` script as shown below:
+   ```sh
+   python3 scripts/download_savestates.py
+   ```
 
 ---
 
@@ -82,6 +113,11 @@ To test if training on your machine works quickly, you can also run `python BTR.
 
 To actually do your own training, simply run `python BTR.py`. This will use 4 instances of dolphin by default. This will put quite some strain on most PCs, so you may want to reduce this to 2 or 1 (You can also do 8 if you have a crazy good machine and don't mind your fans going crazy).
 
+#### Note on Mac OS:
+To train using the Mac GPU, run the following command:
+```sh
+python BTR.py --spectral 0 --device mps
+```
 ---
 
 ### 7. What to Expect
