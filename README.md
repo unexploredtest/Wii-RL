@@ -21,7 +21,7 @@ This algorithm is able to get first place in approximately one day of training u
 The algorithm can still be run on lighter hardware, but may take slightly longer.
 
 **Beyond The Rainbow (BTR) algorithm, accepted at ICML 2025 (Poster):**  
-https://arxiv.org/abs/2411.03820
+[https://arxiv.org/abs/2411.03820](https://openreview.net/pdf?id=V3KXsUFw8D)
 
 ---
 
