@@ -69,6 +69,10 @@ When you acquire the ROM, rename it to `mkw.iso` and put it in the directory `ga
 
 ---
 
+### 3. Setting Up This Repository
+
+To correctly allow this repo to interact with Dolphin, please follow these steps:
+
 1. Download **Felk's Fork of Dolphin**, which allows programmatic input to the emulator via Python. This can be done by running the `download_dolphin.py` script as shown below (only Windows and macOS are supported):
    ```sh
    python3 scripts/download_dolphin.py
